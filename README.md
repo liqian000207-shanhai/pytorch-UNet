@@ -16,7 +16,7 @@ pythorch
 2.  直接运行train.py,其中train_image文件夹存储的是训练过程中的效果图
 3.  params文件夹保存权重
 4.  测试test.py，用来测试图片，测试结果存储在result文件夹中
-
+5.  数据集：http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
 
 #### 视频地址
 B站：https://www.bilibili.com/video/BV11341127iK?spm_id_from=333.999.0.0
