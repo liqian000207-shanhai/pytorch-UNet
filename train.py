@@ -91,13 +91,14 @@ if __name__ == '__main__':
             if i % 1 == 0:
                 print(f'{epoch}-{i}-train_loss===>>{train_loss.item()}')
 
-            # 取出 batch 中第一张图的标签和预测结果，保存用于观察训练效果。
+            # 取出 batch 中第一张图的原图、标签和预测结果，保存用于观察训练效果。
             # 不同训练模式下，标签的可视化方式不同，所以统一走公共转换函数。
+            _image = image[0].detach().cpu()
             _segment_image = mask_to_visual_tensor(segment_image[0], train_type)
             _out_image = mask_to_visual_tensor(torch.argmax(out_image[0], dim=0), train_type)
 
-            # 把真实标签与预测结果堆叠在一起保存成图片，便于对比观察
-            img = torch.stack([_segment_image, _out_image], dim=0)
+            # 按“原图 | 真实标签 | 预测结果”的顺序拼成三联图，便于和视频里的效果一致。
+            img = torch.stack([_image, _segment_image, _out_image], dim=0)
             save_image(img, f'{save_path}/{i}.png')
 
         # 每 50 轮保存一次模型参数
